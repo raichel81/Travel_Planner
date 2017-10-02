@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if request.user.is_authenticated %}
+		<h2>My Trips</h2>
+		<table class="table">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Destination</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Plans</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trip in mytrips %}
+					<tr>
+						<td><a href="{% url 'trips:destination' trip.id %}">{{ trip.destination }}</a></td>
+						<td class="align-middle">{{ trip.start_date }}</td>
+						<td class="align-middle">{{ trip.end_date }}</td>
+						<td><small class="text-muted d-block">{{ trip.description }}</small></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+	<h2>All Scheduled Trips</h2>  
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr>
+				<th>User</th>
+				<th>Destination</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Plans</th>
+				<th>Wanna join?</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for trip in trips %}
+				<tr>
+					<td class="align-middle">{{ trip.created_by }}</td>                
+					<td><a href="{% url 'trips:destination' trip.id %}">{{ trip.destination }}</a></td>
+					<td class="align-middle">{{ trip.start_date }}</td>
+					<td class="align-middle">{{ trip.end_date }}</td>
+					<td><small class="text-muted d-block">{{ trip.description }}</small></td>
+					<td><a href="{% url 'trips:join' trip.id %}">Join</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+  	</table>
+<a href="{% url 'trips:add_trip' %}">Add Trip</a>
+{% endblock %}

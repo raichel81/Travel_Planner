@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h3> {{ trip.destination}}</h3>
+    <br>
+    <h5>Planned By: <small> {{ trip.created_by.username }}</small></h5>
+    <h5>Trip Starts: <small>{{ trip.start_date }}</small></h5>
+    <h5>Trip Ends: <small>{{ trip.end_date }}</small></h5>
+    <br>
+    <h5>Other people joining this trip:</h5>
+    {% for user in trip.users.all %}
+        {% if trip.created_by.id != user.id %}
+            <small>{{ user }}</small>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

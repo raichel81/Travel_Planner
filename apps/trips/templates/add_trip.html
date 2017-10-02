@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Plan a New Trip{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'trips:index' %}">Trips</a></li>
+  <li class="breadcrumb-item active">New trip</li>
+{% endblock %}
+
+{% block content %}
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% include 'includes/form.html' %}
+  <button type="submit" class="btn btn-success">Add Trip</button>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+body {
+    background-image: url(../img/ignasi.png);
+}
+
+.logo {
+    font-family: 'Dosis', sans-serif;
+}
+  
+.logo a {
+    color: rgba(0,0,0,.9);
+}
+  
+.logo a:hover,
+.logo a:active {
+    text-decoration: none;
+}
+
+
